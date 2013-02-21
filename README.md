@@ -10,20 +10,20 @@ NOTE: While this series of files/steps highlights common refactorings, it is not
 Files/Steps
 -----------
 
-001-begin.php
-002-extract_method.php
-003-rename_variables.php
-004-rename_method.php
-005-move_method.php
-006-replace_temp_with_query.php
-007-extract_method.php
-008-replace_temp_with_query.php
-009-replace_temp_with_query.php
-010-multiple_statement_types.php
-011-move_method.php
-012-move_method.php
-013-condition_to_polymorphism.php
-014-condition_to_polymorphism.php
+* 001-begin.php
+* 002-extract_method.php
+* 003-rename_variables.php
+* 004-rename_method.php
+* 005-move_method.php
+* 006-replace_temp_with_query.php
+* 007-extract_method.php
+* 008-replace_temp_with_query.php
+* 009-replace_temp_with_query.php
+* 010-multiple_statement_types.php
+* 011-move_method.php
+* 012-move_method.php
+* 013-condition_to_polymorphism.php
+* 014-condition_to_polymorphism.php
 
 How to use these files:
 -----------------------
