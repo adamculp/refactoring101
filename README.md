@@ -7,6 +7,8 @@ The code is based on PHP 5+ object model, so older versions of PHP will not work
 
 NOTE: While this series of files/steps highlights common refactorings, it is not supposed to representative of "great code".  By that I mean there is still more refactoring/work to be done to make it perfect.  These files are meant for training only, and not meant to be completed project.
 
+Also note that whitespace is not how I would normally handle code.  However, since this code will be used in presentation slides for a talk I have handled whitespace a bit differntly so code blocks are smaller, thus enabling code to be shown larger on the slides.
+
 Files/Steps
 -----------
 
