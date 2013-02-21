@@ -1,13 +1,13 @@
 refactoring101
 ==============
 
-The code here, represented as steps, is the progression of a refactoring on a legacy codebase. It is a PHP version of the Java code shown in the Martin Fowler book "Refactoring". http://www.refactoring.com/
+The code here, represented as steps, is the progression of multiple refactorings on a legacy codebase.  The files were created to go along with a "Refactoring 101" talk, as a PHP version of the Java code shown in Martin Fowler's book "Refactoring". http://www.refactoring.com/
 
-The code is based on PHP 5+ object model, so older versions of PHP will not work.
+The code is based on the PHP 5+ object model, so older versions of PHP will not work.
 
-NOTE: While this series of files/steps highlights common refactorings, it is not supposed to representative of "great code".  By that I mean there is still more refactoring/work to be done to make it perfect.  These files are meant for training only, and not meant to be completed project.
+NOTE: While this series of files/steps highlights common refactorings, it is not representative of "great code" or a finished product.  But is in fact a "work in progress".  By that I mean there is still more refactoring/work to be done which is beyond the scope of this project.  These files are meant for training only, and not meant to be a completed project.
 
-Also note that whitespace is not how I would normally handle code.  However, since this code will be used in presentation slides for a talk I have handled whitespace a bit differntly so code blocks are smaller, thus enabling code to be shown larger on the slides.
+Also note the whitespace is not how I would normally handle it.  However, since this code will be used in presentation slides for a talk I have handled whitespace differntly so code blocks are compact, thus enabling code to be shown larger on the slides.
 
 Files/Steps
 -----------
@@ -30,7 +30,7 @@ Files/Steps
 How to use these files:
 -----------------------
 
-These files are best used by doing a diff-type side-by-side view of the previous and next versions.  I have included a doc block in the head of each file that explains the changes, and in some cases why they were done. However, it is best to look at the code itself to see what was done with each iteration.
+These files are best used by doing a diff-like side-by-side view of the previous and next versions.  I have included a doc block in the head of each file to explains the changes, and in some cases why they were done. (Which also coincides with the book mentioned earlier.) However, it is best to look at the code itself to see what was done with each iteration.
 
 Enjoy!
 
