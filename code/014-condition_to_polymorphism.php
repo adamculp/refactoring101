@@ -92,7 +92,7 @@ class Movie {
     public function getPriceCode() {
         return $this->priceCode;
     }
-
+    
     public function setPriceCode($priceCode) {
         $this->priceCode = $priceCode;
     }
@@ -124,7 +124,7 @@ class Movie {
         	break;
         }
     }
-    
+
     public function getFrequentRenterPoints($daysRented) {
         return $this->price->getFrequentRenterPoints($daysRented);
     }

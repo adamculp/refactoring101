@@ -97,7 +97,7 @@ class Movie {
     public function getTitle() {
         return $this->title;
     }
-    
+
     public function getCharge($daysRented) {
         $result = 0;
 

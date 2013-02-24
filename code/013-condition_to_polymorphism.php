@@ -95,7 +95,7 @@ class Movie {
     public function getPriceCode() {
         return $this->priceCode;
     }
-
+    
     public function setPriceCode($priceCode) {
         $this->priceCode = $priceCode;
     }
@@ -127,7 +127,7 @@ class Movie {
         	break;
         }
     }
-    
+
     public function getFrequentRenterPoints($daysRented) {
         // add bonus for a two day release rental
         if (($this->getPriceCode() == self::NEW_RELEASE) && ($daysRented > 1)) {
