@@ -24,8 +24,10 @@ Files/Steps
 * 010-multiple_statement_types.php
 * 011-move_method.php
 * 012-move_method.php
-* 013-condition_to_polymorphism.php
-* 014-condition_to_polymorphism.php
+* 013-replace_type_code_with_state.php
+* 014-move_method.php
+* 015-repl_conditional_w_polymorphism.php
+* 016-repl_conditional_w_polymorphism.php
 
 How to use these files:
 -----------------------
