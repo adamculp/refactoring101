@@ -1,12 +1,11 @@
 <?php
 /**
- * In this step we do 3 different things to get to the end goal and achieving
- * polymorphism for getFrequentRenterPoints().
+ * In this step we move the getFrequentRenterPoints() method to the Movie class
+ * because it should not rely on someone else's data. Again, this makes adding
+ * types in the future easier with changes only to the Movie and no need to touch
+ * Rental. It also keeps both things that vary by type in the same place.
  * 
- * 1st - Move Method = we move the getFrequentRenterPoints() method to the Price class.
- * 
- * 2nd - Replace conditional with polymorphism = then we copy getFrequentRenterPoints
- * to the NewReleasePrice so it calculates differently than others.
+ * This also causes less impact if new types are introduced in the future.
  * 
  */
 class Customer {
@@ -80,36 +79,23 @@ class Movie {
     const NEW_RELEASE = 1;
     
     public $title;
-    public $priceCode;
     public $price;
     
     public function __construct($title, $priceCode) {
         $this->title = $title;
-        $this->setPriceCode($priceCode);
-        $this->setPrice();
+        $this->setPrice($priceCode);
     }
     
     public function getPriceCode() {
-        return $this->priceCode;
+        return $this->price->getPriceCode();
     }
     
-    public function setPriceCode($priceCode) {
-        $this->priceCode = $priceCode;
-    }
-    
-    public function getTitle() {
-        return $this->title;
-    }
-    
-    public function getPrice($daysRented) {
-        return $this->price->getCharge($daysRented);
-    }
-    
-    public function setPrice() {
-        switch ($this->getPriceCode()) {
-        	case self::REGULAR:
-        	    $this->price = new RegularPrice();
-        	    break;
+    public function setPrice($priceCode) {
+
+        switch ($priceCode) {
+            case self::REGULAR:
+                $this->price = new RegularPrice();
+                break;
 
             case self::CHILDRENS:
                 $this->price = new ChildrensPrice();
@@ -118,15 +104,28 @@ class Movie {
             case self::NEW_RELEASE:
                 $this->price = new NewReleasePrice();
                 break;
-            
-        	default:
-        		throw new Exception;
-        	break;
+
+            default:
+                throw new Exception('Incorrect Price Code.');
+                break;
         }
+    }
+    
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getCharge($daysRented) {
+        return $this->price->getCharge($daysRented);
     }
 
     public function getFrequentRenterPoints($daysRented) {
-        return $this->price->getFrequentRenterPoints($daysRented);
+        // add bonus for a two day release rental
+        if (($this->getPriceCode() == self::NEW_RELEASE) && ($daysRented > 1)) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 }
 
@@ -148,7 +147,7 @@ class Rental {
     }
 
     public function getCharge() {
-        return $this->movie->getPrice($this->getDaysRented());
+        return $this->movie->getCharge($this->getDaysRented());
     }
 
     public function getFrequentRenterPoints() {
@@ -159,10 +158,30 @@ class Rental {
 abstract class Price {
     abstract protected function getPriceCode();
 
-    abstract protected function getCharge($daysRented);
-    
-    public function getFrequentRenterPoints($daysRented) {
-        return 1;
+    public function getCharge($daysRented) {
+        $result = 0;
+
+        switch ($this->getPriceCode()) {
+            case Movie::REGULAR:
+                $result += 2;
+                if ($daysRented > 2) {
+                    $result += ($daysRented - 2) * 1.5;
+                }
+                break;
+
+            case Movie::NEW_RELEASE:
+                $result += $daysRented * 3;
+                break;
+
+            case Movie::CHILDRENS:
+                $result += 1.5;
+                if ($daysRented > 3) {
+                    $result += ($daysRented - 3) * 1.5;
+                }
+                break;
+        }
+
+        return $result;
     }
 }
 
@@ -170,43 +189,17 @@ class ChildrensPrice extends Price {
     public function getPriceCode() {
         return Movie::CHILDRENS;
     }
-
-    public function getCharge($daysRented) {
-        $result = 1.5;
-        if ($daysRented > 3) {
-            $result += ($daysRented - 3) * 1.5;
-        }
-
-        return $result;
-    }
 }
 
 class NewReleasePrice extends Price {
     public function getPriceCode() {
         return Movie::NEW_RELEASE;
     }
-
-    public function getCharge($daysRented) {
-        return $daysRented * 3;
-    }
-
-    public function getFrequentRenterPoints($daysRented) {
-        return ($daysRented > 1) ? 2 : 1;
-    }
 }
 
 class RegularPrice extends Price {
     public function getPriceCode() {
         return Movie::REGULAR;
-    }
-
-    public function getCharge($daysRented) {
-        $result = 2;
-        if ($daysRented > 2) {
-            $result += ($daysRented - 2) * 1.5;
-        }
-
-        return $result;
     }
 }
 

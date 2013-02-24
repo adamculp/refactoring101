@@ -1,15 +1,12 @@
 <?php
 /**
  * In this step we do 3 different things to get to the end goal and achieving
- * polymorphism and eliminating the switch statement for getCharge().
+ * polymorphism for getFrequentRenterPoints().
  * 
- * 1st - Replace type code with state strategy = using inheritance we set the assignment
- * of the priceCode in subclasses of Price, in the getPriceCode() methods.
+ * 1st - Move Method = we move the getFrequentRenterPoints() method to the Price class.
  * 
- * 2nd - Move Method = we move the getCharge() method to the Price class.
- * 
- * 3rd - Replace conditional with polymorphism = then we change getCharge to be
- * abstract and copy the individual pricing to each of the subclasses.
+ * 2nd - Replace conditional with polymorphism = then we copy getFrequentRenterPoints
+ * to the NewReleasePrice so it calculates differently than others.
  * 
  */
 class Customer {
@@ -83,36 +80,23 @@ class Movie {
     const NEW_RELEASE = 1;
     
     public $title;
-    public $priceCode;
     public $price;
     
     public function __construct($title, $priceCode) {
         $this->title = $title;
-        $this->setPriceCode($priceCode);
-        $this->setPrice();
+        $this->setPrice($priceCode);
     }
     
     public function getPriceCode() {
-        return $this->priceCode;
+        return $this->price->getPriceCode();
     }
     
-    public function setPriceCode($priceCode) {
-        $this->priceCode = $priceCode;
-    }
-    
-    public function getTitle() {
-        return $this->title;
-    }
-    
-    public function getPrice($daysRented) {
-        return $this->price->getCharge($daysRented);
-    }
-    
-    public function setPrice() {
-        switch ($this->getPriceCode()) {
-        	case self::REGULAR:
-        	    $this->price = new RegularPrice();
-        	    break;
+    public function setPrice($priceCode) {
+
+        switch ($priceCode) {
+            case self::REGULAR:
+                $this->price = new RegularPrice();
+                break;
 
             case self::CHILDRENS:
                 $this->price = new ChildrensPrice();
@@ -121,20 +105,23 @@ class Movie {
             case self::NEW_RELEASE:
                 $this->price = new NewReleasePrice();
                 break;
-            
-        	default:
-        		throw new Exception;
-        	break;
+
+            default:
+                throw new Exception('Incorrect Price Code.');
+                break;
         }
+    }
+    
+    public function getTitle() {
+        return $this->title;
+    }
+
+    public function getCharge($daysRented) {
+        return $this->price->getCharge($daysRented);
     }
 
     public function getFrequentRenterPoints($daysRented) {
-        // add bonus for a two day release rental
-        if (($this->getPriceCode() == self::NEW_RELEASE) && ($daysRented > 1)) {
-            return 2;
-        } else {
-            return 1;
-        }
+        return $this->price->getFrequentRenterPoints($daysRented);
     }
 }
 
@@ -156,7 +143,7 @@ class Rental {
     }
 
     public function getCharge() {
-        return $this->movie->getPrice($this->getDaysRented());
+        return $this->movie->getCharge($this->getDaysRented());
     }
 
     public function getFrequentRenterPoints() {
@@ -168,6 +155,10 @@ abstract class Price {
     abstract protected function getPriceCode();
 
     abstract protected function getCharge($daysRented);
+    
+    public function getFrequentRenterPoints($daysRented) {
+        return 1;
+    }
 }
 
 class ChildrensPrice extends Price {
@@ -192,6 +183,10 @@ class NewReleasePrice extends Price {
 
     public function getCharge($daysRented) {
         return $daysRented * 3;
+    }
+
+    public function getFrequentRenterPoints($daysRented) {
+        return ($daysRented > 1) ? 2 : 1;
     }
 }
 
