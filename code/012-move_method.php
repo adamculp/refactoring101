@@ -1,13 +1,14 @@
 <?php
 /**
- * In this step we move the getFrequentRenterPoints() method to the Movie class
- * because it should not rely on someone else's data. Again, this makes adding
- * types in the future easier with changes only to the Movie and no need to touch
- * Rental. It also keeps both things that vary by type in the same place.
- * 
- * This also causes less impact if new types are introduced in the future.
+ * In this step we "Move Method" getFrequentRenterPoints() to the Movie class
+ * because it relies on attributes of the Movie object. ($priceCode) And if the
+ * users want to add more types later it will be easier to alter in the Movie
+ * class.
+ *
+ * This causes the least impact if new types are introduced.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

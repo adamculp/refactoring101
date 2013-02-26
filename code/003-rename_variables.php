@@ -7,6 +7,7 @@
  * 2 - $thisAmount to $result in Customer->amountFor()
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

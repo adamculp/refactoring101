@@ -1,9 +1,11 @@
 <?php
 /**
- * In this step we extract the calculation of $frequentRenterPoints to its own
- * method, and put it in the Rental class because it rightly belongs with the rental.
+ * In this step we "Extract Method" and move the calculation of $frequentRenterPoints
+ * to its own method.  We put it in the Rental class because it rightly belongs
+ * with the rental data.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

@@ -1,13 +1,16 @@
 <?php
 /**
- * In this step we move the getFrequentRenterPoints() method to the Movie class
- * because it should not rely on someone else's data. Again, this makes adding
- * types in the future easier with changes only to the Movie and no need to touch
- * Rental. It also keeps both things that vary by type in the same place.
+ * In this step we "Replace Type Code with State", which requires quite a few changes:
  * 
- * This also causes less impact if new types are introduced in the future.
+ * 1 - We create an abstract Price class with abstract getPriceCode() method.
+ * 2 - We create sub-classes of Price for each type code that return the priceCode.
+ * 3 - We create a switch in Movie->setPriceCode() to use the new constructs.
+ * 4 - $priceCode becomes $price as it will be carrying the Price object.
+ * 5 - In the Movie->__construct we populate the $price object by calling setPriceCode().
+ * 6 - Finally, we alter Movie->getPriceCode() to return the code from $price.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

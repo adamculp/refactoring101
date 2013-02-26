@@ -1,11 +1,12 @@
 <?php
 /**
- * In this step we extract the calculation of $frequentRenterPoints to its own
- * method, and put it in the Rental class because it rightly belongs with the rental.
+ * In this step we "Replace Temp with Query" and move the calculation of temporary
+ * variable $totalAmount to its own method and name the method getTotalCharge().
  * 
- * We were also able to remove the temp variable $totalAmount.
+ * We are now able to remove the temp variable $totalAmount.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

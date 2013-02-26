@@ -1,14 +1,17 @@
 <?php
 /**
- * In this step we do 3 different things to get to the end goal and achieving
- * polymorphism for getFrequentRenterPoints().
+ * In this step we "Replace Conditional with Polymorphism" by changing getCharge()
+ * to abstract, and copy the individual pricing to each of the subclasses.
  * 
- * 1st - Move Method = we move the getFrequentRenterPoints() method to the Price class.
- * 
- * 2nd - Replace conditional with polymorphism = then we copy getFrequentRenterPoints
- * to the NewReleasePrice so it calculates differently than others.
+ * 1 - Move Method for getFrequentRenterPoints() to Price.
+ * 2 - Update the old getFrequentRenterPoints() to call the new method using the object.
+ * 3 - We add instances of the getFrequentRenterPoints() to any subclass that needs it.
+ *
+ * In the future to add frequent renter point differences we simply add an instance
+ * of getFrequentRenterPoints() to the appropriate subclass, to override the parent.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

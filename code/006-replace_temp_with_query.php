@@ -1,9 +1,13 @@
 <?php
 /**
- * In this step we clean up temporary variable $thisAmount and simply make 2 
- * lightweight calls to Rental->getCharge() instead.
+ * In this step we "Replace Temp with Query" to remove temporary variable $thisAmount
+ * and simply make 2 lightweight calls to Rental->getCharge() instead.
+ * 
+ * Remember, we are refactoring, not optimizing. Refactor first, then optimize
+ * later if/when needed.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

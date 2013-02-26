@@ -4,9 +4,10 @@
  * This is done by renaming:
  * 
  * 1 - Customer->amountFor() to Customer->getCharge()
- * 2 - Then we change all calls to the method to use new naming (line 34)
+ * 2 - Then we change all calls to the method to use new naming
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

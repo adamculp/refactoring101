@@ -1,9 +1,15 @@
 <?php
 /**
- * In this step we create two different representations of the statement, one in
- * text and the other in html.
+ * In this step we rename the existing statement() method to statementText() and
+ * create another method named statementHtml() for the HTML representation requested
+ * by the customer.
+ * 
+ * Because the calculations of the rental charges, frequent renter points, and
+ * grand total are now external to the statement it creates much less duplication
+ * to have two representations of the statement.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

@@ -1,4 +1,10 @@
 <?php
+/**
+ * This is the beginning point of the refractoring journey. From here we have the
+ * task of creating an HTML representation of the statement.  However, to get there
+ * we have a bit of cleanup to do.
+ * 
+ */
 
 class Customer {
     public $name;

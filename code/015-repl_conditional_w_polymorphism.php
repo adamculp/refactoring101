@@ -1,17 +1,14 @@
 <?php
 /**
- * In this step we do 3 different things to get to the end goal and achieving
- * polymorphism and eliminating the switch statement for getCharge().
+ * In this step we "Replace Conditional with Polymorphism" by changing getCharge()
+ * to abstract, and copy the individual pricing to each of the subclasses.
  * 
- * 1st - Replace type code with state strategy = using inheritance we set the assignment
- * of the priceCode in subclasses of Price, in the getPriceCode() methods.
- * 
- * 2nd - Move Method = we move the getCharge() method to the Price class.
- * 
- * 3rd - Replace conditional with polymorphism = then we change getCharge to be
- * abstract and copy the individual pricing to each of the subclasses.
+ * In the future to change the calculation for any type we simply alter its class,
+ * and to add more types we add a constant, update the switch, then create a new
+ * class extending Price.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

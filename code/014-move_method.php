@@ -1,13 +1,13 @@
 <?php
 /**
- * In this step we move the getFrequentRenterPoints() method to the Movie class
- * because it should not rely on someone else's data. Again, this makes adding
- * types in the future easier with changes only to the Movie and no need to touch
- * Rental. It also keeps both things that vary by type in the same place.
+ * In this step we "Move Method" getCharge() from Movie to Price and call it from
+ * the old getCharge() left behind in the Movie class.
  * 
- * This also causes less impact if new types are introduced in the future.
+ * Keep in mind, this is just a step toward an end.  The intent is not to leave
+ * the method in its current state in Price.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

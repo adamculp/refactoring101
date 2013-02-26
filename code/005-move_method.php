@@ -1,12 +1,14 @@
 <?php
 /**
- * In this step we move the Customer->getCharge method to the Rental class since
- * it uses information from the rental, and uses no information from the customer.
- * Keeps the method with the data.
+ * In this step we "Move Method" with the Customer->getCharge method and move it
+ * to the Rental class since it uses information from the rental (Move object and
+ * $daysRented), and uses no information from the customer.  Keeps the method with
+ * the data.
  * 
- * Now we calculate the price for each movie through the rental object.
+ * Now we calculate the price for each movie through the Rental object.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;

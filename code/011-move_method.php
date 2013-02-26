@@ -1,12 +1,14 @@
 <?php
 /**
- * In this step we move the getCharge() method to the Movie class because a switch
- * statement should not rely on someone else's data. If the users want to add more
- * types later it will be easier to alter in the Movie class versus the Rental.
+ * In this step we "Move Method" getCharge() to the Movie class because a switch
+ * statement should not rely on attributes of another object. ($priceCode) And if
+ * the users want to add more types later it will be easier to alter in the Movie
+ * class without touching Rental.
  * 
  * This causes the least impact if new types are introduced.
  * 
  */
+
 class Customer {
     public $name;
     public $rentals;
