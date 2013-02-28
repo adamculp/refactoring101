@@ -4,10 +4,11 @@
  * 
  * 1 - We create an abstract Price class with abstract getPriceCode() method.
  * 2 - We create sub-classes of Price for each type code that return the priceCode.
- * 3 - We create a switch in Movie->setPriceCode() to use the new constructs.
- * 4 - $priceCode becomes $price as it will be carrying the Price object.
- * 5 - In the Movie->__construct we populate the $price object by calling setPriceCode().
- * 6 - Finally, we alter Movie->getPriceCode() to return the code from $price.
+ * 3 - $priceCode in Movie becomes $price as it will be carrying the Price object.
+ * 4 - We rename Movie->setPriceCode() to Movie->setPrice() to follow variable naming.
+ * 5 - We create a switch in Movie->setPriceCode() to use the new constructs.
+ * 6 - In the Movie->__construct we populate the $price object by calling setPriceCode().
+ * 7 - Finally, we alter Movie->getPriceCode() to return the code from $price.
  * 
  */
 
