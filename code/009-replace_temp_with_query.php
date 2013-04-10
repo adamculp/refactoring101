@@ -3,8 +3,6 @@
  * In this step we "Replace Temp with Query" and move the calculation of temporary
  * variable $frequentRenterPoints to its own method and named getTotalFrequentRenterPoints().
  *
- * We are now able to remove all instances of the temp variable $frequentRenterPoints.
- * 
  */
 
 class Customer {

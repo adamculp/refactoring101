@@ -3,8 +3,6 @@
  * In this step we "Replace Temp with Query" and move the calculation of temporary
  * variable $totalAmount to its own method and name the method getTotalCharge().
  * 
- * We are now able to remove the temp variable $totalAmount.
- * 
  */
 
 class Customer {

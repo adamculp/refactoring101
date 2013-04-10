@@ -5,7 +5,8 @@
  * users want to add more types later it will be easier to alter in the Movie
  * class.
  *
- * This causes the least impact if new types are introduced.
+ * This causes the least impact if/when new types or frequent renter points are
+ * introduced.
  * 
  */
 

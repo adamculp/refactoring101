@@ -5,7 +5,7 @@
  * by the customer.
  * 
  * Because the calculations of the rental charges, frequent renter points, and
- * grand total are now external to the statement it creates much less duplication
+ * grand total are now external to the statement creation there is less duplication
  * to have two representations of the statement.
  * 
  */

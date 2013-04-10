@@ -2,7 +2,7 @@
 /**
  * In this step we "Extract Method" and move the calculation of $frequentRenterPoints
  * to its own method.  We put it in the Rental class because it rightly belongs
- * with the rental data.
+ * with the Rental data.
  * 
  */
 

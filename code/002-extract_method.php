@@ -1,8 +1,8 @@
 <?php
 /**
  * In this step we use "Extract Method" to move the switch statement from 
- * Customer->statement() to its own method. Then we call the new amountFor()
- * method while passing it $each as a param, which is an Rental object.
+ * Customer->statement() to its own method named amountFor(). Then we call this
+ * new amountFor() method while passing it $each as a param, which is an Rental object.
  * 
  */
 
