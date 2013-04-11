@@ -1,7 +1,8 @@
 <?php
 /**
  * In this step we "Replace Conditional with Polymorphism" by changing getCharge()
- * to abstract, and copy the individual pricing to each of the subclasses.
+ * to abstract, and copy the individual pricing to each of the subclasses so charges
+ * are calculated differently for each type code.
  * 
  * In the future to change the calculation for any type we simply alter its class,
  * and to add more types we add a constant, update the switch, then create a new

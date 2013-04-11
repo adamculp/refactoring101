@@ -1,9 +1,9 @@
 <?php
 /**
- * In this step we "Replace Conditional with Polymorphism" by changing getCharge()
- * to abstract, and copy the individual pricing to each of the subclasses.
+ * In this step we "Replace Conditional with Polymorphism" by adding getFrequentRenterPoints()
+ * to the individual pricing to each of the subclasses as needed.
  * 
- * 1 - Move Method for getFrequentRenterPoints() to Price.
+ * 1 - Move Method for getFrequentRenterPoints() to Price, as the default.
  * 2 - Update the old getFrequentRenterPoints() to call the new method using the object.
  * 3 - We add instances of the getFrequentRenterPoints() to any subclass that needs it.
  *
