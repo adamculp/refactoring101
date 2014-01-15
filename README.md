@@ -1,7 +1,7 @@
 refactoring101
 ==============
 
-The code here, represented as steps, is the progression of multiple refactorings on a legacy codebase.  The files were created to go along with a "Refactoring 101" talk, as a PHP version of the Java code shown in Martin Fowler's book "Refactoring". http://www.refactoring.com/
+The code here, represented as steps, is the progression of multiple refactorings on a legacy codebase.  The files were created to go along with a "Refactoring 101" talk (slides found at http://www.slideshare.net/adamculp/refactoring-23666462), as a PHP version of the Java code shown in Martin Fowler's book "Refactoring". http://www.refactoring.com/
 
 The code is based on the PHP 5+ object model, so older versions of PHP will not work.
 
