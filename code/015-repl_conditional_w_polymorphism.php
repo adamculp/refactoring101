@@ -13,6 +13,8 @@
 
 namespace Refactoring015;
 
+use Exception;
+
 class Customer {
     protected string $name;
     protected array $rentals;
@@ -94,7 +96,10 @@ class Movie {
     public function getPriceCode(): int {
         return $this->price->getPriceCode();
     }
-    
+
+    /**
+     * @throws Exception
+     */
     public function setPrice($priceCode) {
 
         switch ($priceCode) {
@@ -112,7 +117,6 @@ class Movie {
 
             default:
                 throw new Exception('Incorrect Price Code.');
-                break;
         }
     }
     
@@ -212,6 +216,11 @@ class RegularPrice extends Price {
 
 // define customer
 $customer = new Customer('Adam Culp');
+
+// Test of Exception throwing
+//$movie = new Movie('Superman', 3);
+//$rental = new Rental($movie, 1);
+//$customer->addRental($rental);
 
 // choose movie to be rented, define rental, add it to the customer
 $movie = new Movie('Gladiator', 0);
