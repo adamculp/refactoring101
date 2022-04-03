@@ -2,13 +2,16 @@
 /**
  * In this step we use "Extract Method" to move the switch statement from 
  * Customer->statement() to its own method named amountFor(). Then we call this
- * new amountFor() method while passing it $each as a param, which is an Rental object.
- * 
+ * new amountFor() method while passing it $each as a param, which is a Rental object.
+ *
+ * For a video showing this step, see: https://youtu.be/mtBrzU13Yqc
  */
 
+namespace Refactoring002;
+
 class Customer {
-    public $name;
-    public $rentals;
+    protected string $name;
+    protected array $rentals;
     
     public function __construct($name) {
         $this->name = $name;
@@ -18,11 +21,11 @@ class Customer {
         $this->rentals[] = $rental;
     }
     
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
     
-    public function statement() {
+    public function statement(): string {
         $totalAmount = 0;
         $frequentRenterPoints = 0;
         $result = "Rental Record for " . $this->getName() . "\n";
@@ -33,7 +36,7 @@ class Customer {
 
             $frequentRenterPoints++;
 
-            // add bonus for a two day release rental
+            // add bonus for a two-day new release rental
             if (($each->movie->getPriceCode() == Movie::NEW_RELEASE) && ($each->getDaysRented() > 1)) {
                 $frequentRenterPoints++;
             }
@@ -49,7 +52,7 @@ class Customer {
         return $result;
     }
     
-    public function amountFor($each) {
+    public function amountFor($each): float {
         $thisAmount = 0;
         
         switch ($each->movie->getPriceCode()) {
@@ -64,7 +67,7 @@ class Customer {
                 $thisAmount += $each->getDaysRented() * 3;
                 break;
 
-            case Movie::CHILDRENS:
+            case Movie::CHILDREN:
                 $thisAmount += 1.5;
                 if ($each->getDaysRented() > 3) {
                     $thisAmount += ($each->getDaysRented() - 3) * 1.5;
@@ -77,19 +80,19 @@ class Customer {
 }
 
 class Movie {
-    const CHILDRENS = 2;
+    const CHILDREN = 2;
     const REGULAR = 0;
     const NEW_RELEASE = 1;
-    
-    public $title;
-    public $priceCode;
+
+    protected string $title;
+    protected int $priceCode;
     
     public function __construct($title, $priceCode) {
         $this->title = $title;
         $this->setPriceCode($priceCode);
     }
     
-    public function getPriceCode() {
+    public function getPriceCode(): int {
         return $this->priceCode;
     }
     
@@ -97,25 +100,25 @@ class Movie {
         $this->priceCode = $priceCode;
     }
     
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 }
 
 class Rental {
-    public $movie;
-    public $daysRented;
+    public Movie $movie;
+    protected int $daysRented;
     
     public function __construct(Movie $movie, $daysRented) {
         $this->movie = $movie;
         $this->daysRented = $daysRented;
     }
     
-    public function getDaysRented() {
+    public function getDaysRented(): int {
         return $this->daysRented;
     }
     
-    public function getMovie() {
+    public function getMovie(): Movie {
         return $this->movie;
     }
 }
