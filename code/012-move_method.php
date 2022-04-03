@@ -10,9 +10,11 @@
  * 
  */
 
+namespace Refactoring012;
+
 class Customer {
-    public $name;
-    public $rentals;
+    protected string $name;
+    protected array $rentals;
     
     public function __construct($name) {
         $this->name = $name;
@@ -22,11 +24,11 @@ class Customer {
         $this->rentals[] = $rental;
     }
     
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
     
-    public function statementText() {
+    public function statementText(): string {
         $result = "Rental Record for " . $this->getName() . "\n";
         
         foreach ($this->rentals as $rental) {
@@ -40,8 +42,8 @@ class Customer {
         return $result;
     }
 
-    public function statementHtml() {
-        $result = "<h1>Rental Record for <em>" . $this->getName() . "</em></h1><p>\n";
+    public function statementHtml(): string {
+        $result = "<h1>Rental Record for <em>" . $this->getName() . "</em></h1>\n";
 
         foreach ($this->rentals as $rental) {
             $result .= $rental->movie->getTitle() . " " . $rental->getCharge() . "<br />\n";
@@ -54,7 +56,7 @@ class Customer {
         return $result;
     }
     
-    public function getTotalFrequentRenterPoints() {
+    public function getTotalFrequentRenterPoints(): int {
         $result = 0;
         
         foreach ($this->rentals as $rental) {
@@ -64,7 +66,7 @@ class Customer {
         return $result;
     }
     
-    public function getTotalCharge() {
+    public function getTotalCharge(): float {
         $result = 0;
         
         foreach ($this->rentals as $rental) {
@@ -76,19 +78,19 @@ class Customer {
 }
 
 class Movie {
-    const CHILDRENS = 2;
+    const CHILDREN = 2;
     const REGULAR = 0;
     const NEW_RELEASE = 1;
-    
-    public $title;
-    public $priceCode;
+
+    protected string $title;
+    protected int $priceCode;
     
     public function __construct($title, $priceCode) {
         $this->title = $title;
         $this->setPriceCode($priceCode);
     }
     
-    public function getPriceCode() {
+    public function getPriceCode(): int {
         return $this->priceCode;
     }
     
@@ -96,11 +98,11 @@ class Movie {
         $this->priceCode = $priceCode;
     }
     
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 
-    public function getCharge($daysRented) {
+    public function getCharge($daysRented): float {
         $result = 0;
 
         switch ($this->getPriceCode()) {
@@ -115,7 +117,7 @@ class Movie {
                 $result += $daysRented * 3;
                 break;
 
-            case self::CHILDRENS:
+            case self::CHILDREN:
                 $result += 1.5;
                 if ($daysRented > 3) {
                     $result += ($daysRented - 3) * 1.5;
@@ -126,38 +128,42 @@ class Movie {
         return $result;
     }
 
-    public function getFrequentRenterPoints($daysRented) {
-        // add bonus for a two day release rental
+    public function getFrequentRenterPoints($daysRented): int {
+        $result = 0;
+
+        // add bonus for a two-day new release rental
         if (($this->getPriceCode() == self::NEW_RELEASE) && ($daysRented > 1)) {
-            return 2;
+            $result += 2;
         } else {
-            return 1;
+            $result += 1;
         }
+
+        return $result;
     }
 }
 
 class Rental {
-    public $movie;
-    public $daysRented;
+    public Movie $movie;
+    protected int $daysRented;
     
     public function __construct(Movie $movie, $daysRented) {
         $this->movie = $movie;
         $this->daysRented = $daysRented;
     }
     
-    public function getDaysRented() {
+    public function getDaysRented(): int {
         return $this->daysRented;
     }
     
-    public function getMovie() {
+    public function getMovie(): Movie {
         return $this->movie;
     }
 
-    public function getCharge() {
+    public function getCharge(): float {
         return $this->movie->getCharge($this->getDaysRented());
     }
 
-    public function getFrequentRenterPoints() {
+    public function getFrequentRenterPoints(): int {
         return $this->movie->getFrequentRenterPoints($this->getDaysRented());
     }
 }
