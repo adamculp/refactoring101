@@ -8,9 +8,11 @@
  * 
  */
 
+namespace Refactoring006;
+
 class Customer {
-    public $name;
-    public $rentals;
+    protected string $name;
+    protected array $rentals;
     
     public function __construct($name) {
         $this->name = $name;
@@ -20,11 +22,11 @@ class Customer {
         $this->rentals[] = $rental;
     }
     
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
     
-    public function statement() {
+    public function statement(): string {
         $totalAmount = 0;
         $frequentRenterPoints = 0;
         $result = "Rental Record for " . $this->getName() . "\n";
@@ -33,7 +35,7 @@ class Customer {
             
             $frequentRenterPoints++;
 
-            // add bonus for a two day release rental
+            // add bonus for a two-day new release rental
             if (($rental->movie->getPriceCode() == Movie::NEW_RELEASE) && ($rental->getDaysRented() > 1)) {
                 $frequentRenterPoints++;
             }
@@ -51,19 +53,19 @@ class Customer {
 }
 
 class Movie {
-    const CHILDRENS = 2;
+    const CHILDREN = 2;
     const REGULAR = 0;
     const NEW_RELEASE = 1;
-    
-    public $title;
-    public $priceCode;
+
+    protected string $title;
+    protected int $priceCode;
     
     public function __construct($title, $priceCode) {
         $this->title = $title;
         $this->setPriceCode($priceCode);
     }
     
-    public function getPriceCode() {
+    public function getPriceCode(): int {
         return $this->priceCode;
     }
     
@@ -71,29 +73,29 @@ class Movie {
         $this->priceCode = $priceCode;
     }
     
-    public function getTitle() {
+    public function getTitle(): string {
         return $this->title;
     }
 }
 
 class Rental {
-    public $movie;
-    public $daysRented;
+    public Movie $movie;
+    protected int $daysRented;
     
     public function __construct(Movie $movie, $daysRented) {
         $this->movie = $movie;
         $this->daysRented = $daysRented;
     }
     
-    public function getDaysRented() {
+    public function getDaysRented(): int {
         return $this->daysRented;
     }
     
-    public function getMovie() {
+    public function getMovie(): Movie {
         return $this->movie;
     }
 
-    public function getCharge() {
+    public function getCharge(): float {
         $result = 0;
 
         switch ($this->movie->getPriceCode()) {
@@ -108,7 +110,7 @@ class Rental {
                 $result += $this->getDaysRented() * 3;
                 break;
 
-            case Movie::CHILDRENS:
+            case Movie::CHILDREN:
                 $result += 1.5;
                 if ($this->getDaysRented() > 3) {
                     $result += ($this->getDaysRented() - 3) * 1.5;
