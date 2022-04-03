@@ -9,6 +9,7 @@ The code is based on the PHP 7.4 which includes types, so older versions of PHP 
 
 IMPORTANT:
 
+* In an IDE, ignore the warnings of duplicated code fragments. Those are is expected.
 * While this series of files/steps highlights common refactorings, it is not representative of "great code" or a finished product.  But is in fact a "work in progress".  By that I mean there is still more refactoring/work to be done which is beyond the scope of this project.  These files are meant for training only, and not meant to be a completed project.
 * For brevity of this training material, some common code conventions, and/or PHP conventions were not followed. Such as one class per file, and proper namespaces.
 * Also for brevity, this code should not be thought of as the optimal way to create logic. After any refactor, performance should also be taken into account.
