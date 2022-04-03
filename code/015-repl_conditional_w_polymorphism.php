@@ -91,7 +91,7 @@ class Movie {
         $this->setPrice($priceCode);
     }
     
-    public function getPriceCode() {
+    public function getPriceCode(): int {
         return $this->price->getPriceCode();
     }
     
@@ -120,7 +120,7 @@ class Movie {
         return $this->title;
     }
 
-    public function getCharge($daysRented) {
+    public function getCharge($daysRented): float {
         return $this->price->getCharge($daysRented);
     }
 
@@ -155,7 +155,7 @@ class Rental {
         return $this->movie;
     }
 
-    public function getCharge() {
+    public function getCharge(): float {
         return $this->movie->getCharge($this->getDaysRented());
     }
 
